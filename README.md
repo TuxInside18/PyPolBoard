@@ -12,7 +12,7 @@ Strumento open-source in Python per gestire eventi, contatti e task all'interno 
 ## Tecnologie usate 
 - **Linguaggio**: Python 3.11+  
 - **CLI**: Typer  
-- **Database**: SQLite  
+- **Database**: mySQL  
 - **Frontend**: Rich (terminal) / Flask (future web version)  
 
 ## Perché usarlo  
