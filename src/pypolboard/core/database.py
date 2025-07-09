@@ -4,8 +4,11 @@
 # See LICENSE file for details
 
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
+
+from src.pypolboard.models.base import Base
 
 # Load local variables inside the .env file
 load_dotenv()
@@ -17,4 +20,7 @@ PORT = os.environ['DB_PORT']
 DBNAME = os.environ['DB_NAME']
 
 # Replace USERNAME, PASSWORD, HOST, PORT, and DBNAME with your credentials
-engine = create_engine(f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DBNAME}')
+DATABASE_URL = f'mysql+pymysql://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DBNAME}'
+
+engine = create_engine(DATABASE_URL, echo=False, future=True)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
