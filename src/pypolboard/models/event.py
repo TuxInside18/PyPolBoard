@@ -3,30 +3,19 @@
 # Licensed under the GNU AGPL v3.0
 # See LICENSE file for details
 
-from typing import List
-from datetime import datetime
+from sqlalchemy import Column, Integer, String, Text, DateTime
+from src.pypolboard.models.base import Base
 
+class Event(Base):
+    __tablename__ = "events"
 
-class Events:
-    def __init__(self,
-                 id: int,
-                 title: str,
-                 description: str,
-                 date_start: datetime,
-                 date_end: datetime,
-                 location: str,
-                 event_type: str,
-                 created_by: str,
-                 expected_participants: int,
-                 attached_files: List[str] = None
-                 ):
-        self.id = id
-        self.title = title
-        self.description = description
-        self.date_start = date_start
-        self.date_end = date_end
-        self.location = location
-        self.event_type = event_type
-        self.created_by = created_by
-        self.expected_participants = expected_participants
-        self.attached_files = attached_files if attached_files is not None else []
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(String(100), nullable=False)
+    description = Column(Text, nullable=True)
+    date_start = Column(DateTime, nullable=False)
+    date_end = Column(DateTime, nullable=False)
+    location = Column(String(100), nullable=True)
+    event_type = Column(String(50), nullable=False)
+    created_by = Column(String(100), nullable=False)
+    expected_participants = Column(Integer, nullable=True)
+    attached_files = Column(Text, nullable=True)  # JSON-serialized list
