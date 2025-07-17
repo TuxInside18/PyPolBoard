@@ -4,7 +4,7 @@
 # See LICENSE file for details
 
 from sqlalchemy import Column, Integer, String, Text, DateTime
-from src.pypolboard.models.base import Base
+from .base import Base
 
 class Event(Base):
     __tablename__ = "events"
